@@ -69,7 +69,7 @@ app.post('/bfhl', (req, res) => {
 
 // Optional: health check
 app.get('/', (req, res) => {
-    res.send('BFHL API is running');
+    res.status(200).send('BFHL API is running');
 });
 
 const PORT = process.env.PORT || 3000;

@@ -5,7 +5,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post('/bfhl', (req, res) => {
+app. .route("/bfhl")
+  .get((req, res) => {
+    res.status(200).json({ operation_code: 1 });
+  })post('/bfhl', (req, res) => {
     const input = req.body.data;
 
     if (!Array.isArray(input)) {
@@ -68,9 +71,9 @@ app.post('/bfhl', (req, res) => {
 });
 
 // Optional: health check
-app.get('/', (req, res) => {
-    res.status(200).send('BFHL API is running');
-});
+// app.get('/', (req, res) => {
+//     res.status(200).send('BFHL API is running');
+// });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

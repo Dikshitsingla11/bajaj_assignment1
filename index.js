@@ -1,11 +1,11 @@
-export default function handler(req, res) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({
-            is_success: false,
-            message: "Only POST method is allowed"
-        });
-    }
+const express = require('express');
+const cors = require('cors');
+const app = express();
 
+app.use(cors());
+app.use(express.json());
+
+app.post('/bfhl', (req, res) => {
     const input = req.body.data;
 
     if (!Array.isArray(input)) {
@@ -65,4 +65,14 @@ export default function handler(req, res) {
         sum: sum.toString(),
         concat_string
     });
-}
+});
+
+// Optional: health check
+app.get('/', (req, res) => {
+    res.send('BFHL API is running');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
